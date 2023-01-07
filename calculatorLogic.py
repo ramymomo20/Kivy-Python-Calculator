@@ -142,7 +142,8 @@ class Calculator:
                                 return "Zero Division Error"
                     stack.push(self.operators[item](operand2, operand1))
                     
-        return stack.pop()
+        ans = stack.pop()
+        return int(ans) if ans - int(ans) == 0 else str(round(ans,4))
     
     @functools.lru_cache(maxsize=None)
     def factorial(self, operand):
