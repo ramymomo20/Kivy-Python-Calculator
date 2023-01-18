@@ -70,23 +70,27 @@ class Calculator:
             if split_expression[i] == '-' and (i == 0 or not split_expression[i-1].isdigit()):
                 split_expression[i] += split_expression[i+1]
                 del split_expression[i+1]
+                
             if split_expression[i] == '√':
-                if i - 1 >= 0:
-                    if split_expression[i-1].isdigit():
-                        return "Error"
                 # Check if the expression is of the form "√number"
                 if i == 0 or not split_expression[i-1].isdigit():
                     if i+1 < len(split_expression) and split_expression[i+1].isdigit():
                         i += 1
                     else:
                         return "Error"
+                 # Check if the expression is of the form "number√number"
+                if i+1 < len(split_expression) and split_expression[i+1].isdigit():
+                    print(split_expression)
+                    split_expression.insert(i-1,"*")
+                    i += 1
                 # Check if the expression is of the form "number√"
-                if len(split_expression) < 3 and (split_expression[i-1].isdigit()):
+                if (split_expression[i-1].isdigit() and (not split_expression[i+1].isdigit() or len(split_expression) <= 2)):
                     return "Error"
                 else:
                     i += 1
             else:
                 i += 1
+                
         x = ' '.join(split_expression)
         return x
 
