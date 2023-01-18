@@ -80,7 +80,6 @@ class Calculator:
                         return "Error"
                  # Check if the expression is of the form "number√number"
                 if i+1 < len(split_expression) and split_expression[i+1].isdigit():
-                    print(split_expression)
                     split_expression.insert(i-1,"*")
                     i += 1
                 # Check if the expression is of the form "number√"
