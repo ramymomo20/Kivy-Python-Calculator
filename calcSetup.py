@@ -5,9 +5,7 @@ from kivy.config import Config
 from kivy.uix.button import Button
 from kivy.core.window import Window
 
-
 from calculatorLogic import *
-from interactions import TextInput
 
 kivy.require('1.9.0')
 Window.size = (500,500)
@@ -30,8 +28,9 @@ class CalcGridLayout(GridLayout):
 
     def calculate(self, calculation):
         try:
-            x = Calculator(f'{calculation}')
-            res = x.calculate
+            x = Calculator()
+            x.expr = str(calculation)
+            res = x.calculate()
             self.input.text = str(res)
         except Exception:
             self.input.text = 'Error'
